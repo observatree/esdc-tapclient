@@ -1,0 +1,5 @@
+// MANIPULATE ADQL (OPTIONAL)
+IReplaceHandler replacer = new ReplacePointHandler();
+replacer.searchAndReplace(query);
+if (replacer.getNbMatch() > 0)
+  System.out.println("INFO: "+replacer.getNbReplacement()+"/"+replacer.getNbMatch()+" replacements done");

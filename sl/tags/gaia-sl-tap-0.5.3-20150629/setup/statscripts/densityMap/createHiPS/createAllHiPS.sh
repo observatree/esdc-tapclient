@@ -1,0 +1,10 @@
+./createHiPS.sh g10_mw
+./createHiPS.sh g10_gal
+./createHiPS.sh g10_quasars
+./createHiPS.sh g10_sn
+./createHiPS.sh g10_lmc
+./createHiPS.sh g10_smc
+./createHiPS.sh igsl_source
+./createHiPS.sh tycho2
+./createHiPS.sh twomass_psc
+./createHiPS.sh gog

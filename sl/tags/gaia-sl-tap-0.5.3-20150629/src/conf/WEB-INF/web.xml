@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>GACS_TAP</display-name>
+	
+		<context-param>
+			<param-name>gacs.sl.version</param-name>
+			<param-value>@gacs.sl.version@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.app.id</param-name>
+			<param-value>@app.id@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.tapTempLocation</param-name>
+			<param-value>@temp.path@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.tapAppPath</param-name>
+			<param-value>@app.context@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>cas.server.url</param-name>
+			<param-value>@cas.server.url@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.voDataServiceSchemaExtension</param-name>
+			<param-value>@vodataservice.schema.extension@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.voFunctionsSchema</param-name>
+			<param-value>@vofunctionsservice.schema@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.tapSchemaUseViews</param-name>
+			<param-value>@tap.schema.use.views@</param-value>
+		</context-param>
+
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.JDBCPoolSingleton.dbServer</param-name>
+			<param-value>@db.server@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.JDBCPoolSingleton.dbPort</param-name>
+			<param-value>@db.port@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.JDBCPoolSingleton.dbName</param-name>
+			<param-value>@db.name@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.JDBCPoolSingleton.dbOwner</param-name>
+			<param-value>@db.owner@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.JDBCPoolSingleton.dbPwd</param-name>
+			<param-value>@db.pwd@</param-value>
+		</context-param>
+
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.upload_limit_rows</param-name>
+			<param-value>@tap.upload.rows.limit@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>esac.archive.gacs.sl.tap.output_limit_rows</param-name>
+			<param-value>@tap.output.rows.limit@</param-value>
+		</context-param>
+
+		<context-param>
+			<param-name>uws.app.id</param-name>
+			<param-value>@app.id@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.app.storage_dir</param-name>
+			<param-value>@uws.app.storage_dir@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.max_running_jobs</param-name>
+			<param-value>@uws.max_running_jobs@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.db.usage</param-name>
+			<param-value>@uws.db.usage@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jdbc.dbServer</param-name>
+			<param-value>@db.server@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jdbc.dbPort</param-name>
+			<param-value>@db.port@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jdbc.dbName</param-name>
+			<param-value>@db.name@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jdbc.dbOwner</param-name>
+			<param-value>@db.owner@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jdbc.dbPwd</param-name>
+			<param-value>@db.pwd@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.db.quota</param-name>
+			<param-value>@uws.db.quota@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.files.quota</param-name>
+			<param-value>@uws.files.quota@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.exec_duration_limit</param-name>
+			<param-value>@uws.exec_duration_limit@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.upload.enabled</param-name>
+			<param-value>@uws.upload.enabled@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.upload.max_size</param-name>
+			<param-value>@uws.upload.max_size@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.fixed_base_url</param-name>
+			<param-value>@uws.fixed_base_url@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jobs_removal_check_time</param-name>
+			<param-value>@uws.jobs_removal_check_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.jobs_delta_destruction_time</param-name>
+			<param-value>@uws.jobs_delta_destruction_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.old_empty_dirs_cmp_time</param-name>
+			<param-value>@uws.old_empty_dirs_cmp_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.events_removal_check_time</param-name>
+			<param-value>@uws.events_removal_check_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.events_delta_destruction_time</param-name>
+			<param-value>@uws.events_delta_destruction_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.notifications_removal_check_time</param-name>
+			<param-value>@uws.notifications_removal_check_time@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.notifications_delta_destruction_time</param-name>
+			<param-value>@uws.notifications_delta_destruction_time@</param-value>
+		</context-param>
+		
+		<context-param>
+			<param-name>uws.ldap.server</param-name>
+			<param-value>@uws.ldap.server@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.ldap.search_base</param-name>
+			<param-value>@uws.ldap.search_base@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.ldap.usr</param-name>
+			<param-value>@uws.ldap.usr@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>uws.ldap.pwd</param-name>
+			<param-value>@uws.ldap.pwd@</param-value>
+		</context-param>
+
+		<context-param>
+			<param-name>public.group.id</param-name>
+			<param-value>@public.group.id@</param-value>
+		</context-param>
+		<context-param>
+			<param-name>public.group.owner</param-name>
+			<param-value>@public.group.owner@</param-value>
+		</context-param>
+
+	<servlet>
+		<display-name>GacsTapServlet</display-name>
+		<servlet-name>TapServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.tap.actions.TapServlet</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TapServlet</servlet-name>
+	    <url-pattern>/tap/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>GacsUploadServlet</display-name>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.UploadServlet</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>UploadServlet</servlet-name>
+	    <url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>GacsConvertToJsonServlet</display-name>
+		<servlet-name>ConvertToJsonServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.ConvertToJsonServlet</servlet-class>
+		<init-param>
+			<param-name>keystorePath</param-name>
+			<param-value>@convert.json.keystore.path@</param-value>
+		</init-param>
+		<init-param>
+			<param-name>tmpFileDir</param-name>
+			<param-value>@convert.json.tmp.dir@</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>ConvertToJsonServlet</servlet-name>
+	    <url-pattern>/Transform</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<display-name>CrossMatchServlet</display-name>
+		<servlet-name>CrossMatchServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.CrossMatchServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>CrossMatchServlet</servlet-name>
+	    <url-pattern>/crossMatch</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<display-name>GacsIdManagerServlet</display-name>
+		<servlet-name>IdManagerServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.IdManagerServlet</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>IdManagerServlet</servlet-name>
+	    <url-pattern>/IdManager</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>GacsTaskStatusServlet</display-name>
+		<servlet-name>TaskStatusServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.TaskStatusServlet</servlet-class>
+
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TaskStatusServlet</servlet-name>
+	    <url-pattern>/TaskStatus</url-pattern>
+	</servlet-mapping>
+				
+	<servlet>
+		<display-name>LoginStatusServlet</display-name>
+		<servlet-name>LoginStatus</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.LoginStatusServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	    <servlet-name>LoginStatus</servlet-name>
+	    <url-pattern>/LoginStatus</url-pattern>
+	</servlet-mapping>
+		
+	<!--  Name resolver servlet -->
+	<servlet>
+		<servlet-name>target-resolver</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.TargetNameResolverServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>target-resolver</servlet-name>
+		<url-pattern>/servlet/target-resolver</url-pattern>
+	</servlet-mapping>
+	
+	<!--  FileUpload Name resolver servlet -->
+	<servlet>
+		<servlet-name>target-list-file-upload</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.TargetListFileUploadServlet</servlet-class>
+		<init-param>
+			<param-name>esac.archive.gacs.sl.fileupload.FileUploadServletConfig.uploadDir</param-name>
+			<param-value>@target.file.upload.dir@</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>target-list-file-upload</servlet-name>
+		<url-pattern>/servlet/target-list-file-upload</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Sessions manager servlet -->
+	<servlet>
+		<display-name>GacsSessionManagerServlet</display-name>
+		<servlet-name>SessionManagerServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.SessionManagerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>SessionManagerServlet</servlet-name>
+	    <url-pattern>/SessionManager</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- Sessions manager servlet -->
+	<servlet>
+		<display-name>GacsStatGraphsServlet</display-name>
+		<servlet-name>StatGraphsServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.StatGraphsServlet</servlet-class>
+		
+		<init-param>
+			<param-name>esac.archive.gacs.sl.tap.actions.statGraphsDirectory</param-name>
+			<param-value>@stat.graphs.directory@</param-value>
+		</init-param>
+		
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>StatGraphsServlet</servlet-name>
+	    <url-pattern>/StatGraph</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>GacsTableToolServlet</display-name>
+		<servlet-name>TableToolServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.TableToolServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TableToolServlet</servlet-name>
+	    <url-pattern>/TableTool</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>GacsPublicGroupServlet</display-name>
+		<servlet-name>PublicGroupServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.PublicGroupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>PublicGroupServlet</servlet-name>
+	    <url-pattern>/PublicGroup</url-pattern>
+	</servlet-mapping>
+
+	
+	<servlet>
+		<display-name>GacsManagerServlet</display-name>
+		<servlet-name>ManagerServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.ManagerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ManagerServlet</servlet-name>
+	    <url-pattern>/Manager</url-pattern>
+	</servlet-mapping>
+
+	
+	<servlet>
+		<display-name>GacsShareServlet</display-name>
+		<servlet-name>ShareServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.ShareServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>ShareServlet</servlet-name>
+	    <url-pattern>/Share</url-pattern>
+	</servlet-mapping>
+
+	
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+   
+    
+    <!-- WhoAmI servlet -->
+	<servlet>
+		<display-name>WhoAmIServlet</display-name>
+		<servlet-name>WhoAmIServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.WhoAmIServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>WhoAmIServlet</servlet-name>
+	    <url-pattern>/WhoAmI</url-pattern>
+	</servlet-mapping>
+
+    <!-- WhoAmIConsumer servlet -->
+	<servlet>
+		<display-name>WhoAmIConsumerServlet</display-name>
+		<servlet-name>WhoAmIConsumerServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.WhoAmIConsumerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>WhoAmIConsumerServlet</servlet-name>
+	    <url-pattern>/WhoAmIConsumer</url-pattern>
+	</servlet-mapping>
+	
+	<!-- CasLogin servlet -->
+	<servlet>
+		<display-name>CasLoginServlet</display-name>
+		<servlet-name>CasLoginServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.CasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>CasLoginServlet</servlet-name>
+	    <url-pattern>/CasLogin</url-pattern>
+	</servlet-mapping>
+
+	<!-- CasLogout servlet -->
+	<servlet>
+		<display-name>CasLogoutServlet</display-name>
+		<servlet-name>CasLogoutServlet</servlet-name>
+		<servlet-class>esac.archive.gacs.sl.services.actions.CasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>CasLogoutServlet</servlet-name>
+	    <url-pattern>/CasLogout</url-pattern>
+	</servlet-mapping>
+    
+	<!-- Spring Security    -->
+	<!-- LDAP+CAS+PROXY --> 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/applicationContext-security_cas-proxy-ldap-basic.xml
+        </param-value>
+    </context-param>
+	<!-- LDAP+CAS --> 
+<!--     <context-param> -->
+<!--         <param-name>contextConfigLocation</param-name> -->
+<!--         <param-value> -->
+<!--             /WEB-INF/applicationContext-security_cas-ldap-basic.xml -->
+<!--         </param-value> -->
+<!--     </context-param> -->
+    <!-- LDAP only -->
+<!--     <context-param> -->
+<!--         <param-name>contextConfigLocation</param-name> -->
+<!--         <param-value> -->
+<!--             /WEB-INF/applicationContext-security_ldap.xml -->
+<!--         </param-value> -->
+<!--     </context-param> -->
+
+
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+<!-- 	<filter> -->
+<!-- 		<filter-name>httpsCookieFilter</filter-name> -->
+<!-- 		<filter-class>esac.archive.gacs.security.HttpsCookieFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>httpsCookieFilter</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
+	
+</web-app>

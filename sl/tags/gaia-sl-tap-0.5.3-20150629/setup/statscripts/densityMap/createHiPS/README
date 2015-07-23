@@ -1,0 +1,44 @@
+How to generate a density map HiPS
+==================================================================
+* Step 1 - Export of the density_healpix table in file should be done. The
+filename should have the name public.<table_name>_density
+
+Example:
+- "select * from test.g10_mw_density_healpix order by ipix" 
+- Export as public.g10_mw_density_healpix (column separator ;)
+
+* Step 2- Execute createHiPS.sh (if can be also invoked the createSeveralHips.sh, by
+editing the content, to create several HiPS in one go) using the table name
+(removing the _healpix)
+
+Example:
+> createHiPS.sh public.g10_mw
+
+Internally, the script will generate a healpix fits file with the file
+name public.<table_name>.fits, copy it to the ../
+
+mkdir input
+java -cp .:./fits.jar CreateHealpix -input mw_density -output mw.fits
+
+Load your FITS map in Aladin (ex: http://alasky.u-strasbg.fr/GASS.hpx.gz)
+     1. Launch manually Aladin 
+     
+     java -Xmx2000m -jar Aladin.jar  mw.fits 
+     
+     HiPSgen to create the JPEG and/or PNG tiles on the associated Aladin cache (=>
+     $HOME/.aladin/Cache/HPX/_home_jsalgado_createHealpix_mw_fits/TFIELD1
+          
+      2. java -jar Aladin.jar -hipsgen out=$HOME/.aladin/Cache/HPX/_home_jsalgado_createHealpix_mw_fits/TFIELD1 JPEG PNG
+      
+      (bizarre optional: pixelCut="1.016E20 2.000E22") 
+
+    	
+     3. cp -ri $HOME/.aladin/Cache/HPX/_home_jsalgado_createHealpix_mw_fits/TFIELD1 ~/webapps/mwHiPS
+     
+     (if tomcat mkdir ~/webapps/mwHiPS/WEB-INF)
+
+cd ~/webapps/mwHiPS
+tar cvf g10_mw.tar *
+
+Copy the result into geadev.esac.esa.int www area
+scp g10_mw.tar geaops@geadev:/var/www/html/

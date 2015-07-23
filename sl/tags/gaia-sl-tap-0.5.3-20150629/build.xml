@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ build.xml
+ gaia-sl-tapcds  -  TAP service from CDS
+-->
+
+<project name="gaia-sl-tap" default="dist" xmlns:cl="antlib:net.jtools.classloadertask" basedir=".">
+
+	<description>
+    	 GAIA TAP service
+    </description>
+
+	<import file="ivy-tasks.xml" />
+
+	<!-- Jera Ant task for encoding passwords -->
+	<taskdef name="query" classpath="setup/antlibs/JeraAntTasks.jar" classname="com.jera.anttasks.Query" />
+
+	<!-- Included for autocontent deploy -->
+	<typedef uri="antlib:net.jtools.classloadertask" resource="net/jtools/classloadertask/antlib.xml">
+		<classpath>
+			<fileset dir="setup/antlibs/" includes="ant-classloadertask.jar" />
+		</classpath>
+	</typedef>
+
+	<cl:classloader loader="project">
+		<classpath>
+			<fileset dir="setup/antlibs" includes="jsch.jar" />
+		</classpath>
+	</cl:classloader>
+	<!-- Included for autocontent deploy -->
+
+	<property file="build.properties" />
+	<property file="build.properties.defaults" />
+	<property file="build.properties.keys" />
+
+	<path id="subant.path" />
+
+	<fileset id="lib.fileset" dir="${lib.dir}" excludes="*.xml" />
+
+	<path id="build.path">
+		<fileset refid="lib.fileset" />
+	</path>
+
+	<path id="test.path">
+		<path refid="build.path" />
+		<pathelement location="${build.classes.dir}" />
+	</path>
+
+	<target name="retrievepwds" depends="" description="Retrieve passwords in password server">
+		<sshexec host="${pw.server.host}"
+			username="${pw.server.username}"
+			keyfile="${pw.server.keyfile}"
+			suppresssystemout="true"
+			command="grep db.pwd ~/passw/passw.properties | cut -d'=' -f2 | awk '{printf $0}'"
+			outputproperty="db.pwd"/>
+		
+		<sshexec host="${pw.server.host}"
+			username="${pw.server.username}"
+			keyfile="${pw.server.keyfile}"
+			suppresssystemout="true"
+			command="grep ldap.pwd ~/passw/passw.properties | cut -d'=' -f2 | awk '{printf $0}'"
+			outputproperty="ldap.pwd"/>
+	</target>
+	
+	<target name="showpw" depends="retrievepwds" description="Show passwords in password server">
+		<echo message="db.pwd: [${db.pwd}]"/>
+		<echo message="ldap.pwd: [${ldap.pwd}]"/>
+	</target>
+	
+	<target name="all" depends="dist, test, docs, check" 
+		description="Build, pack, test, document and check the application" />
+
+	<target name="clean" depends="ivy-clean-jars, ivy-clean-cache" description="Clean up the environment">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${final.dir}" />
+		<delete dir="${subst.dir}" />
+	</target>
+
+	<target name="init" depends="ivy-retrieve" description="Initialise the environment">
+		<tstamp />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="build" depends="clean, init,-update-sonar-projectVersion" description="Compile the java sources">
+		<mkdir dir="${build.classes.dir}" />
+
+		<input message="What target do you want to use for deployment? " 
+			addproperty="deploy.target" validargs="local,int,dev,op" defaultvalue="local" />
+		<property file="build.properties.${deploy.target}" />
+		<subant buildpathref="subant.path" target="build" failonerror="true">
+			<property name="deploy.target" value="${deploy.target}" />
+		</subant>
+
+		<javac srcdir="${java.dir}" destdir="${build.classes.dir}" 
+			classpathref="build.path" source="${javac.source}" 
+			target="${javac.target}" compiler="${javac.compiler}" 
+			nowarn="${javac.nowarn}" debug="${javac.debug}" deprecation="${javac.deprec}" />
+
+		<echo>Copying properties files...</echo>
+		<copy file="${log4j.properties.file}" todir="${build.classes.dir}" />
+		<replace file="${build.classes.dir}/log4j.properties">
+			<replacefilter token="@logfile" value="${software.name}-${software.version}" />
+		</replace>
+		<copy file="${logging.properties.file}" todir="${build.classes.dir}" />
+		
+		
+	</target>
+
+	<target name="-update-sonar-projectVersion"
+	        description="Update value of sonar.projectVersion property in sonar properties file">
+	        <echo>Extract version number from Ivy file</echo>
+	        <loadfile srcfile="ivy.xml" property="ivy.revision">
+	            <filterchain>
+	                <linecontains>
+	                    <contains value="revision=&quot;" />
+	                </linecontains>
+	                <tokenfilter>
+	                    <replacestring from="revision=&quot;" to="&quot;" />
+	                </tokenfilter>
+	            </filterchain>
+	        </loadfile>
+	        <echo message="${ivy.revision}" />
+
+	        <echo>Replace version in sonar configuration file</echo>
+	        <replaceregexp file="sonar-project.properties" match="sonar.projectVersion=(.)*"
+	            replace="sonar.projectVersion=${ivy.revision}">
+	        </replaceregexp>
+	</target> 
+
+
+	<target name="dist" depends="build" description="Make the distribution files (pack as JAR, WAR, EAR, ...)">
+		<mkdir dir="${dist.dir}" />
+		<subant buildpathref="subant.path" target="dist" failonerror="true">
+			<property name="deploy.target" value="${deploy.target}" />
+		</subant>
+	</target>
+
+	<target name="final" depends="retrievepwds,dist" description="Make the final distribution group of files">
+		<subant buildpathref="subant.path" target="final" failonerror="true">
+			<property name="deploy.target" value="${deploy.target}" />
+		</subant>
+
+		<mkdir dir="${final.dir}" />
+		<copy todir="${final.dir}" verbose="true" overwrite="true">
+			<fileset dir="${dist.dir}"/>		
+			<fileset dir="${lib.dir}">
+				<exclude name="junit*"/>
+				<exclude name="checkstyle*"/>
+				<exclude name="servlet-api*"/>
+			</fileset>
+		</copy>
+		
+		<mkdir dir="${subst.dir}" />
+		<copy todir="${subst.dir}" verbose="true" overwrite="true">
+			<fileset dir="${conf.dir}/WEB-INF">
+				<exclude name="web.xml"/>
+				<exclude name="MANIFEST.MF"/>
+			</fileset>
+		</copy>
+
+		<!--<query name="db.pwd" message="Please enter password for ${db.owner}@${db.server}/${db.name}" password="true" />-->
+		<!--<query name="ldap.pwd" message="Please enter password for LDAP superuser" password="true" />-->
+
+		<!-- update web.xml -->
+		<copy file="${conf.webxml.file}" todir="${build.classes.dir}" />
+		<replace file="${build.classes.dir}/web.xml">
+			<replacefilter token="@gacs.sl.version@" value="${software.version}" />
+			<replacefilter token="@stat.graphs.directory@" value="${stat.graphs.directory}" />
+			<replacefilter token="@temp.path@" value="${temp.path}" />
+			<replacefilter token="@cas.server.url@" value="${cas.server.url}" />
+			<replacefilter token="@app.context@" value="${app.context}" />
+			<replacefilter token="@app.host@" value="${app.host}" />
+			<replacefilter token="@tap.schema.use.views@" value="${tap.schema.use.views}" />
+			<replacefilter token="@vodataservice.schema.extension@" value="${vodataservice.schema.extension}" />
+			<replacefilter token="@vofunctionsservice.schema@" value="${vofunctionsservice.schema}" />
+			<replacefilter token="@db.server@" value="${db.server}" />
+			<replacefilter token="@db.port@" value="${db.port}" />
+			<replacefilter token="@db.name@" value="${db.name}" />
+			<replacefilter token="@db.owner@" value="${db.owner}" />
+			<replacefilter token="@db.pwd@" value="${db.pwd}" />
+			<replacefilter token="@target.file.upload.dir@" value="${target.file.upload.dir}" />
+			<replacefilter token="@convert.json.keystore.path@" value="${convert.json.keystore.path}" />
+			<replacefilter token="@convert.json.tmp.dir@" value="${convert.json.tmp.dir}" />
+			<replacefilter token="@tap.upload.rows.limit@" value="${tap.upload.rows.limit}" />
+			<replacefilter token="@tap.output.rows.limit@" value="${tap.output.rows.limit}" />
+			<replacefilter token="@app.id@" value="${app.id}" />
+			<replacefilter token="@uws.app.storage_dir@" value="${uws.app.storage_dir}" />
+			<replacefilter token="@uws.max_running_jobs@" value="${uws.max_running_jobs}" />
+			<replacefilter token="@uws.db.usage@" value="${uws.db.usage}" />
+			<replacefilter token="@uws.db.quota@" value="${uws.db.quota}" />
+			<replacefilter token="@uws.files.quota@" value="${uws.files.quota}" />
+			<replacefilter token="@uws.exec_duration_limit@" value="${uws.exec_duration_limit}" />
+			<replacefilter token="@uws.upload.enabled@" value="${uws.upload.enabled}" />
+			<replacefilter token="@uws.upload.max_size@" value="${uws.upload.max_size}" />
+			<replacefilter token="@uws.fixed_base_url@" value="${uws.fixed_base_url}" />
+			<replacefilter token="@uws.jobs_removal_check_time@" value="${uws.jobs_removal_check_time}" />
+			<replacefilter token="@uws.jobs_delta_destruction_time@" value="${uws.jobs_delta_destruction_time}" />
+			<replacefilter token="@uws.old_empty_dirs_cmp_time@" value="${uws.old_empty_dirs_cmp_time}" />
+			<replacefilter token="@uws.events_removal_check_time@" value="${uws.events_removal_check_time}" />
+			<replacefilter token="@uws.events_delta_destruction_time@" value="${uws.events_delta_destruction_time}" />
+			<replacefilter token="@uws.notifications_removal_check_time@" value="${uws.notifications_removal_check_time}" />
+			<replacefilter token="@uws.notifications_delta_destruction_time@" value="${uws.notifications_delta_destruction_time}" />
+			<replacefilter token="@uws.ldap.server@" value="${uws.ldap.server}" />
+			<replacefilter token="@uws.ldap.search_base@" value="${uws.ldap.search_base}" />
+			<replacefilter token="@uws.ldap.usr@" value="${uws.ldap.usr}" />
+			<replacefilter token="@uws.ldap.pwd@" value="${ldap.pwd}" />
+			<replacefilter token="@public.group.id@" value="${public.group.id}" />
+			<replacefilter token="@public.group.owner@" value="${public.group.owner}" />
+		</replace>
+
+		<!-- Update ldap+CAS file -->
+		<!--<replace file="${subst.dir}/applicationContext-security_cas-ldap-basic.xml"> -->
+		<replace dir="${subst.dir}">
+			<include name="**/applicationContext-security*.xml"/>
+			<replacefilter token="@ldap.pwd@" value="${ldap.pwd}" />
+			<replacefilter token="@uws.ldap.server@" value="${uws.ldap.server}" />
+			<replacefilter token="@cas.service.url@" value="${cas.service.url}" />
+			<replacefilter token="@cas.server.url@" value="${cas.server.url}" />
+		</replace>
+
+		<!-- Update ldap file -->
+		<replace file="${subst.dir}/applicationContext-security_ldap.xml">
+			<replacefilter token="@ldap.pwd@" value="${ldap.pwd}" />
+		</replace>
+
+		<!-- Creating war file -->
+		<war destfile="${dist.war.file}" webxml="${build.classes.dir}/web.xml" manifest="${conf.manifest.file}" compress="${war.compress}" update="${war.update}">
+			<classes dir="${build.classes.dir}" />
+			<lib dir="${final.dir}" />
+			<!--webinf dir="${conf.dir}/WEB-INF" includes="*"/-->
+			<webinf dir="${subst.dir}" includes="*" />
+			<fileset dir="${conf.dir}/web">
+			      <include name="**/*.*"/>
+			</fileset>
+		</war>
+	</target>
+
+	
+	<target name="check.local">
+        <condition property="isLocal">
+            <and>
+                <equals arg1="${deploy.target}" arg2="local" trim="true"/>
+            </and>
+        </condition>
+    </target>
+	
+	<target name="deploy.local" depends="final, check.local"  if="isLocal">
+		<!-- In case you want to use the war file directly -->
+	    <copy file="${dist.war.file}" todir="${server.instdir}" overwrite="true"/>
+		
+		<!-- Create environment for eclipse: for a dynamic web project, use build/classes as output, src/java as source and WebContent as web folder
+			do not allow eclipse to generate web.xml
+		 -->
+		<delete dir="WebContent" />
+		<mkdir dir="WebContent" />
+		<mkdir dir="WebContent/WEB-INF" />
+		<mkdir dir="WebContent/WEB-INF/lib" />
+		<mkdir dir="WebContent/WEB-INF/classes" />
+		<mkdir dir="WebContent/META-INF" />
+		<copy todir="WebContent" >
+			<fileset dir="${conf.dir}/web">
+			      <include name="**/*.*"/>
+			</fileset>
+		</copy>
+		<!--copy todir="WebContent/WEB-INF" >
+			<fileset dir="${conf.dir}/WEB-INF" includes="*"/>
+		</copy-->
+		<copy todir="WebContent/WEB-INF" >
+			<fileset dir="${subst.dir}" includes="*"/>
+		</copy>
+		<copy todir="WebContent/WEB-INF/lib">
+			<fileset dir="${lib.dir}" includes="*" />
+		</copy>
+		
+		<copy file="${build.classes.dir}/log4j.properties" todir="WebContent/WEB-INF/classes" />
+		<copy file="${build.classes.dir}/logging.properties" todir="WebContent/WEB-INF/classes" />
+		
+		<copy file="${conf.manifest.file}" todir="WebContent/META-INF" />
+		<copy file="${build.classes.dir}/web.xml" tofile="WebContent/WEB-INF/web.xml" overwrite="yes"/>
+		
+		<copy todir="${stat.graphs.directory}">
+		    <fileset dir="${setup.dir}/statgraphs" includes="*"/>
+		</copy>
+	</target>
+	
+	<target name="deploy.notlocal" depends="final, check.local" unless="isLocal">
+	   <echo message="Remote copy" />
+		<echo message="${server.host}" />
+    	<!--<query name="server.password" 
+    		message="Please enter password for ${server.user}@${server.host}" 
+    	    password="true"/>-->
+	    <scp keyfile="${deploy.server.keyfile}" 
+	    	file="${dist.war.file}" 
+	    	todir="${server.user}@${server.host}:${server.instdir}"
+            trust="true"
+	    	verbose="false"/>
+		<scp keyfile="${deploy.server.keyfile}" 
+			todir="${server.user}@${server.host}:${stat.graphs.directory}">
+		    <fileset dir="${setup.dir}/statgraphs" includes="*"/>
+		</scp>
+	</target>
+	
+	<target name="deploy" depends="deploy.local,deploy.notlocal" description="Deploy the application"/>
+	
+	<target name="undeploy" depends="init" description="Undeploy the application">
+		<input message="What target do you want to undeploy? " addproperty="deploy.target" validargs="local,int,dev,op" />
+		<property file="build.properties.${deploy.target}" />
+
+		<!--  TODO  -->
+	</target>
+
+	<target name="redeploy" depends="init" description="Redeploy the application">
+		<input message="What target do you want to redeploy? " addproperty="deploy.target" validargs="local,int,dev,op" />
+
+		<antcall target="undeploy" />
+		<antcall target="deploy" />
+	</target>
+
+	<target name="build-tests" depends="build" description="Compiles test code">
+		<mkdir dir="${build.testclass.dir}" />
+		<javac srcdir="test" includes="**" destdir="${build.testclass.dir}" classpathref="test.path" source="${javac.source}" target="${javac.target}" compiler="${javac.compiler}" nowarn="${javac.nowarn}" debug="${javac.debug}" />
+
+		<copy todir="${build.testclass.dir}">
+			<fileset dir="test" />
+		</copy>
+
+	</target>
+
+	<target name="test" depends="build-tests" description="Run the unit tests (using JUnit or other specific tests)">
+		<!--mkdir dir="${build.testclass.dir}" /-->
+		<mkdir dir="${build.jureport.dir}" />
+		<!-- javac srcdir="test" includes="**" destdir="${build.testclass.dir}" classpathref="test.path" 
+			source="${javac.source}" target="${javac.target}" compiler="${javac.compiler}" nowarn="${javac.nowarn}" debug="${javac.debug}"/-->
+
+   		<!-- input message="classpath: '${build.testclass.dir}' " addproperty="jc1.test" validargs="yes,no" defaultvalue="yes" /-->
+
+		<junit printsummary="${junit.summary}" showoutput="${junit.output}">
+			<classpath>
+				<path refid="test.path" />
+				<pathelement location="${build.testclass.dir}" />
+				<pathelement location="${java.dir}" />
+				<pathelement location="build/classes" />
+			</classpath>
+			<!--
+			<batchtest todir="${build.jureport.dir}" haltonfailure="${junit.halt}">
+				<fileset dir="${build.testclass.dir}" includes="**/*Test.class" />
+			</batchtest>
+			-->
+			<!-- test name="esavo.uws.AllTests" todir="${build.jureport.dir}" haltonfailure="no" /-->
+			<test name="AllTests" todir="${build.jureport.dir}" haltonfailure="no" />
+
+			<!-- test name="esac.archive.gacs.sl.services.upload.UploadTest" todir="${build.jureport.dir}" haltonfailure="no" /-->
+			<!-- test name="esac.archive.gacs.sl.services.transform.TransformToJsonTest" todir="${build.jureport.dir}" haltonfailure="no" /-->
+			<!-- test name="esac.archive.gacs.sl.AllTests" todir="${build.jureport.dir}" haltonfailure="no" /-->
+			<!-- test name="esac.archive.gacs.sl.services.transform.TransformToJsonTest" todir="${build.jureport.dir}" haltonfailure="no" /-->
+			<formatter type="xml" />
+		</junit>
+
+		<junitreport todir="${build.jureport.dir}">
+			<fileset dir="${build.jureport.dir}" includes="TEST-*.xml" />
+			<report todir="${build.jureport.dir}" />
+		</junitreport>
+	</target>
+
+	<target name="docs" depends="init" description="Generate the API javadoc (and other documentation files)">
+		<mkdir dir="${build.javadoc.dir}" />
+
+		<javadoc sourcepath="${java.dir}" destdir="${build.javadoc.dir}" source="${javac.source}" packagenames="${javadoc.packages}" access="${javadoc.access}" failonerror="${javadoc.fail}">
+			<classpath refid="build.path" />
+
+			<!-- <sourcepath location="${component.dir}/${component.java.dir}"/> -->
+			<link href="http://download.oracle.com/javase/6/docs/api/" />
+			<link href="http://download.oracle.com/javase/6/docs/api/" />
+		</javadoc>
+	</target>
+
+	<target name="check" depends="build" description="Check the sources for style violations (and report them)">
+		<mkdir dir="${build.csreport.dir}" />
+		<taskdef resource="checkstyletask.properties" classpath="${lib.checkstyle.jar}" />
+
+		<checkstyle config="${checkstyle.config}" failonviolation="${checkstyle.fail}">
+			<classpath>
+				<path refid="build.path" />
+				<pathelement location="${build.classes.dir}" />
+			</classpath>
+			<fileset dir="${java.dir}" includes="**/*.java" />
+			<formatter type="xml" tofile="${build.csreport.dir}/csreport.xml" />
+		</checkstyle>
+
+		<xslt basedir="${build.csreport.dir}" includes="*.xml" destdir="${build.csreport.dir}" style="${checkstyle.style}">
+			<param name="output.dir" expression="${build.csreport.dir}" />
+			<param name="source.dir" expression="${basedir}/${java.dir}/" />
+		</xslt>
+	</target>
+</project>
