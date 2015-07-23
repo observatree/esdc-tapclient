@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+
+	<info revision="0.1" status="release" 
+		organisation="esa" e:project="gaia" e:layer="common" 
+		e:component="constants" module="gaia-common-constants">
+		<description homepage="http://satscm.esac.esa.int/redmine/projects/gaiacs">
+			GAIA Common Constants
+		</description>
+	</info>
+	<configurations/>
+	<publications>
+	 	<artifact name="gaia-common-constants" type="jar" ext="jar"/>
+	</publications>
+	<dependencies> 
+		<!-- Third party -->
+	 	<dependency org="junit" name="junit" rev="4.5" force="false" transitive="true"/>
+	 	<dependency org="checkstyle" name="checkstyle-no-deps" rev="4.4" force="false" transitive="true"/>
+
+	    <!-- Absi common -->
+	 	
+	    <!-- Nxsa dependencies -->
+	 		
+	</dependencies>
+	
+</ivy-module>
