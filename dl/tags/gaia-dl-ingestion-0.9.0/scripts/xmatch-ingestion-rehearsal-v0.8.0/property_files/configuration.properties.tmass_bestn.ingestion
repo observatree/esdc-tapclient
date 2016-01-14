@@ -1,0 +1,174 @@
+
+#####################################################################################
+############################# MAIN SECTION ##########################################
+#####################################################################################
+
+# The operation can be 'ingest', 'dump', 'transform' or upload
+type.operation=ingest
+
+# The format can be 'gbin', 'txt', 'fits', 'vot', .... It corresponds with the extension of the file
+# NOT used in case of upload
+type.format=gbin
+
+# Level for the logging
+logging.level=INFO
+
+# Number of threads used to do the work
+threads.number=16
+
+#####################################################################################
+############################# DB SECTION ############################################
+#####################################################################################
+
+# DB connection data
+db.driver=org.postgresql.Driver
+db.derby=postgresql
+db.server=gacsdb01.n1data.lan
+db.port=8300
+db.name=gacs
+db.owner=postgres
+db.pwd=g9c2_r00t
+
+#####################################################################################
+############################# GBIN AUX SECTION ######################################
+#####################################################################################
+
+gbin.pathToXMLFile=/conf/mdict_dm_CU9_documentation-export.xml
+
+# gbin.dataModelTableName=DPC/CU9/ScienceEnablingApplications/CrossMatchCatalogues/TMass/TMassBaseCat
+gbin.dataModelTableName=DPC/CU9/ScienceEnablingApplications/CrossMatchCatalogues/TMass/TMassBestNeighbour
+# gbin.dataModelTableName=DPC/CU9/ScienceEnablingApplications/CrossMatchCatalogues/TMass/TMassNeighbourhood
+
+# Used only for gbin: class that has to be ingested in DB. Could be transformed previously from another 
+#data model but what is going to be ingested is this one (typically (but not only) a CU9 class).
+# gbin.classToUse=gaia.cu9.archivearchitecture.core.dm.CatalogueSource
+# gbin.classToUse=gaia.cu9.archivearchitecture.core.dm.ExtPhotZeroPoint
+# gbin.classToUse=gaia.cu9.operations.auxiliarydata.igsl.dm.IgslSource
+# gbin.classToUse=gaia.cu9.operations.auxiliarydata.igsl.dm.SourceCatalogIDs
+# gbin.classToUse=gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dm.TMassBaseCat
+# gbin.classToUse=gaia.cu9.operations.externalcatalogues.dm.TMassOriginalValid
+gbin.classToUse=gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dm.TMassBestNeighbour
+# gbin.classToUse=gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dm.TMassNeighbourhood
+
+# Used only for gbins: class that provides the conversion: 'none' means no conversion
+# gbin.conversor=none
+
+# gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.TMassNeighbourhood_cu9dm_18_1_1_To_TMassNeighbourhood_cu9dm_18_1_1
+gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.TMassBestNeighbour_cu9dm_18_1_1_To_TMassBestNeighbour_cu9dm_18_1_1
+
+# gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.IgslSource_mdbdm_15_1_1_To_IgslSource_cu9dm_18_1_0
+# gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.IgslSourceCatalogIds_mdbdm_15_1_1_To_IgslSourceCatalogId_cu9dm_18_1_0
+# gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.ExtPhotSystem_19_0_1ToExtPhotZeroPoint_TR_r102486
+# gbin.conversor=esac.archive.gaia.dl.ingestion.objectconverter.CompleteSource_mdbdm_18_0_2_To_CatalogueSource_cu9dm_18_1_0
+
+# Used only for gbins: filter to be applied before ingestion and transformation
+gbin.filterClass=none
+# gbin.filterClass=esac.archive.gaia.dl.ingestion.filters.CompleteSourceGDR1RehersalFilters
+
+# Auxiliary data to find the table that contains Zero Points (required to convert CompleteSource to CatalogueSource)
+# gbin.zeroPointsSchema=public
+# gbin.zeroPointsTable=ext_phot_zero_point
+# gbin.zeroPointsClass=esac.archive.gaia.dl.ingestion.objectconverter.zeroPoints.ExtPhotZeroPointsTable
+gbin.zeroPointsSchema=none
+gbin.zeroPointsTable=none
+gbin.zeroPointsClass=none
+
+#####################################################################################
+############################# UPLOAD SECTION ########################################
+#####################################################################################
+
+# Upload table to TAP schema
+upload.schemaName=user_satgaia
+upload.tableName=t_mass_best_neighbour
+upload.raColumnName=alpha
+upload.decColumnName=delta
+upload.public_schema=no
+upload.public_table=no
+# upload.pathToXMLFile=jar:file:./libtest/CU9Dm-SB-TR-r102486.jar!/conf/mdict_dm_CU9_documentation-export.xml
+upload.tap_schema=tap_schema
+upload.tap_all_columns_table=all_columns
+upload.tap_all_tables_table=all_tables
+upload.tap_all_schemas_table=all_schemas
+
+#####################################################################################
+############################# INGEST SECTION ########################################
+#####################################################################################
+
+# Input data for ingestion
+ingest.schemaName=user_satgaia
+# ingest.tableName=t_mass_neighbourhood
+ingest.tableName=t_mass_best_neighbour
+ingest.createTable=yes
+ingest.pathToFiles=/gaiadata_ops_data/STAGEIN/GDR_OR/xmResults/xm_2015_12_14/TMassBestNeighbour/
+# ingest.pathToFiles=/gaiadata_ops_data/STAGEIN/GDR_OR/xmResults/xm_2015_12_14/TMassNeighbourhood/
+# ingest.filePattern=TMassBestNeighbour
+ingest.filePattern=TMassNeighbourhood
+# It specifies the stilts class to be used to build the class
+ingest.stiltsTableBuilderClass=none
+# ingest.stiltsTableBuilderClass=uk.ac.starlink.table.formats.CsvTableBuilder
+# ingest.stiltsTableBuilderClass=uk.ac.starlink.votable.VOTableBuilder
+# ingest.stiltsTableBuilderClass=uk.ac.starlink.fits.FitsTableBuilder
+
+#####################################################################################
+############################# DUMP SECTION ##########################################
+#####################################################################################
+
+# Input data for dumping
+dump.schemaName=public
+dump.tableName=mdb00_test
+dump.stiltsTableWriter=uk.ac.starlink.table.formats.CsvTableWriter
+dump.outputPath=/home/jduran/localdumps/mdb00_test
+dump.filePattern=localdump
+dump.maxSizePerFileinRows=10000
+
+#####################################################################################
+############################# TRANSFORM SECTION #####################################
+#####################################################################################
+
+# Input data for gbin transformation
+# transform.pathToFiles=/home/jduran/rehearsal_ingestion_tests/igsl01/source_catalogs_ids
+# transform.filePattern=SourceCatalogIDs_
+# transform.outDir=/home/jduran/rehearsal_ingestion_tests/igsl01/source_cat_trans
+transform.pathToFiles=/home/jduran/rehearsal_ingestion_tests/igsl01/igsl_sources
+transform.filePattern=IgslSource
+transform.outDir=/home/jduran/rehearsal_ingestion_tests/igsl01/igsl_trans
+
+#####################################################################################
+############################# MISC SECTION ##########################################
+#####################################################################################
+
+# used for dumping gbins: review
+gaia.cu1.tools.db.driver=org.postgresql.Driver
+gaia.cu1.tools.db.username=postgres
+gaia.cu1.tools.db.password=g9c2_r00t
+gaia.cu1.tools.db.url=jdbc:postgresql://gacsdb01.n1data.lan:8300/gacs
+gaia.cu1.tools.db.useAutoCommit=false
+
+# constant gaia properties for operation with catalogues
+gaia.cu1.tools.dal.gbin.GbinReaderV2.useInputStreamFlag=TRUE
+gaia.cu1.tools.dal.gbin.GbinReaderV4.useThreadContextClassLoader=FALSE
+gaia.cu1.tools.util.DefaultGaiaFactory.useClassCache=FALSE
+gaia.cu1.tools.dal.gbin.GbinWriterV4.resetThreshold=52428800
+gaia.cu1.tools.dal.gbin.GbinWriterV4.outputBufferSize=8192
+gaia.cu1.tools.dal.gbin.GbinWriterV4.writeTableAttributes=FALSE
+gaia.cu1.tools.dal.Store.loadDmProps=TRUE
+gaia.cu1.tools.dal.jdbc.properties.PropertyConfiguration.replaceFlag=FALSE
+gaia.cu1.mdb.cu2.um.umtypes.dm.UMStellarSource=gaia.cu1.mdb.cu2.um.umtypes.dmimpl.UMStellarSourceImpl
+
+gaia.cu9.archivearchitecture.core.dm.Cepheid=gaia.cu9.archivearchitecture.core.dmimpl.CepheidImpl
+gaia.cu9.archivearchitecture.core.abstracttables.dm.CepheidAndRRLyraeElementary=gaia.cu9.archivearchitecture.core.abstracttables.dmimpl.CepheidAndRRLyraeElementaryImpl
+gaia.cu9.archivearchitecture.core.dm.CatalogueSource=gaia.cu9.archivearchitecture.core.dmimpl.CatalogueSourceImpl
+gaia.cu9.archivearchitecture.core.dm.Microlensing=gaia.cu9.archivearchitecture.core.dmimpl.MicrolensingImpl
+gaia.cu9.archivearchitecture.core.dm.RRLyrae=gaia.cu9.archivearchitecture.core.dmimpl.RRLyraeImpl
+gaia.cu9.archivearchitecture.core.abstracttables.dm.StatisticalParameters=gaia.cu9.archivearchitecture.core.abstracttables.dmimpl.StatisticalParametersImpl
+gaia.cu9.archivearchitecture.core.dm.PhotVariableTimeSeriesGccd=gaia.cu9.archivearchitecture.core.dmimpl.PhotVariableTimeSeriesGccdImpl
+gaia.cu9.archivearchitecture.core.dm.PhotVariableTimeSeriesGfov=gaia.cu9.archivearchitecture.core.dmimpl.PhotVariableTimeSeriesGfovImpl
+gaia.cu9.archivearchitecture.core.dm.ExtPhotZeroPoint=gaia.cu9.archivearchitecture.core.dmimpl.ExtPhotZeroPointImpl
+
+gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dm.TMassBestNeighbour=gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dmimpl.TMassBestNeighbourImpl
+gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dm.TMassNeighbourhood=gaia.cu9.scienceenablingapplications.crossmatchcatalogues.tmass.dmimpl.TMassNeighbourhoodImpl
+
+gaia.cu1.mdb.cu3.auxdata.igsl.dm.SourceCatalogIDs=gaia.cu1.mdb.cu3.auxdata.igsl.dmimpl.SourceCatalogIDsImpl
+gaia.cu1.mdb.cu3.auxdata.igsl.dm.IgslSource=gaia.cu1.mdb.cu3.auxdata.igsl.dmimpl.IgslSourceImpl
+
+

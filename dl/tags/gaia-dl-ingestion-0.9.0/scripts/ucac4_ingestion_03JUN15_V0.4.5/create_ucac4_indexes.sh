@@ -1,0 +1,19 @@
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid USING btree(q3c_ang2ipix(alpha, delta))" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(objt)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(cdf)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(ext_source_id)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(id)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(alpha)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(delta)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(c_epoch_alpha)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(c_epoch_delta)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(alpha_error)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(delta_error)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(magm)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(maga)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(sigmag)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(mu_alphastar)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(mu_delta)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(mu_alpha_star_error)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(mu_delta_error)" &
+psql -p 8300 gacs -c "CREATE INDEX ON ucac4_original_valid(n_epochs)" &

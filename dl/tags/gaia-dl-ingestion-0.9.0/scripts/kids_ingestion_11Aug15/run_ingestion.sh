@@ -1,0 +1,1 @@
+time /home/postgres/software/java/jre1.7.0_40/bin/java -Xms1G -Xmx100G -jar gaia-dl-ingestion-0.5.jar ingest fits KiDS kids_mb_catalogue KiDS_DR2.0_ 10 xxx INFO

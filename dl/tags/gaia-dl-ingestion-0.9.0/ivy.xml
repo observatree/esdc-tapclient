@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+
+	<info revision="0.9.0" status="release" 
+		organisation="esa" e:project="gaia" e:layer="dl" 
+		e:component="tools" module="gaia-dl-ingestion">
+		<description homepage="http://satscm.esac.esa.int/trac/GAIA">
+			Gaia DL Archive Tools
+		</description>
+	</info>
+
+	<configurations/>
+
+	<publications>
+	 	<artifact name="gaia-dl-ingestion" type="jar" ext="jar"/>
+	</publications>
+
+	<dependencies>
+		<!-- External libraries -->
+		<dependency org="junit" name="junit" rev="4.5" force="false"
+			transitive="false" />
+		<dependency org="checkstyle" name="checkstyle-no-deps" rev="4.4"
+			force="false" transitive="false" />
+		
+<!--
+		<dependency org="log4j" name="log4j" rev="1.2.16" force="false"
+			transitive="false" />
+		
+		
+		<dependency org="commons-logging" name="commons-logging"
+			rev="1.1.1" force="false" transitive="false" />
+		<dependency org="commons-collections" name="commons-collections"
+			rev="3.2.1" force="false" transitive="false" />
+		
+		
+		<dependency org="org.apache.httpcomponents" name="httpcore"
+			rev="4.1.4" force="false" transitive="false" />
+		<dependency org="org.apache.httpcomponents" name="httpclient"
+			rev="4.1.3" force="false" transitive="false" />
+-->
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.6.1"
+			force="false" transitive="false" />
+		<dependency org="commons-configuration" name="commons-configuration"
+			rev="1.6" force="false" transitive="false" />
+		<dependency org="c3p0" name="c3p0" rev="0.9.1.2" force="false"
+			transitive="false" />
+		<dependency org="postgresql" name="postgresql" rev="8.4-701.jdbc4"
+			force="false" transitive="false" />
+		<dependency org="com.google.guava" name="guava" rev="16.0.1"
+			force="false" transitive="false" />
+		<dependency org="commons-io" name="commons-io" rev="2.4"
+			force="false" transitive="false" />
+		<dependency org="commons-lang" name="commons-lang" rev="2.5"
+			force="false" transitive="false" />
+
+<!--	
+		 <dependency org="gaia" name="GaiaMdbDm" rev="10.0.0" force="false" 
+			transitive="true"/> 
+	
+		<dependency org="gaia" name="GaiaMdbDm" rev="15.2.2" force="false"
+			transitive="true" />
+-->
+
+
+<!--
+		<dependency org="gaia" name="GaiaTools" rev="11.1.0" force="false"
+			transitive="false" />
+
+
+		 <dependency org="gaia" name="GaiaTools" rev="15.1.0" force="false" 
+			transitive="false"/> 
+		-->	
+			<!--
+		<dependency org="gaia" name="GaiaParameters" rev="11.0.0"
+			force="false" transitive="false" />
+
+		<dependency e:project="gaia" e:layer="dl" e:component="hypercube"
+			name="gaia-dl-hypercube" rev="0.2" force="false" transitive="true" />
+-->
+		<dependency e:project="esavo" e:layer="common" e:component="esavo-tap" name="esavo-tap" rev="1.0.11" force="true" transitive="true" />
+
+
+	</dependencies>
+
+</ivy-module>
+

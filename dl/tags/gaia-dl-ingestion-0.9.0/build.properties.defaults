@@ -1,0 +1,59 @@
+# build.properties.defaults
+#
+# GAIA DL Tools
+# Copyright (C) 2012  ESA/ESAC - Madrid, Spain
+
+### software name & version
+software.name=gaia-dl-ingestion
+software.version=0.4.8
+total.component.name=${software.name}-${software.version}
+
+### compiler flags & options
+javac.source=1.7
+javac.target=1.7
+javac.compiler=javac1.6
+
+javac.nowarn=false
+javac.debug=true
+javac.deprec=true
+
+### archiver flags & options
+jar.compress=true
+jar.index=false
+jar.update=false
+
+### junit flags & options
+junit.summary=true
+junit.output=false
+junit.halt=false
+
+### javadoc flags & options
+javadoc.packages=*
+javadoc.access=protected
+javadoc.fail=true
+
+### checkstyle flags & options
+checkstyle.config=setup/sun_checks.xml
+checkstyle.fail=false
+checkstyle.style=setup/checkstyle.xsl
+
+### conf & java directories
+conf.dir=src/conf
+conf.manifest.file=${conf.dir}/MANIFEST.MF
+java.dir=src/java
+
+### build & dist directories
+build.dir=build
+build.classes.dir=${build.dir}/classes
+build.javadoc.dir=${build.dir}/javadoc
+build.testclass.dir=${build.dir}/testclass
+build.jureport.dir=${build.dir}/jureport
+build.csreport.dir=${build.dir}/csreport
+dist.dir=dist
+dist.jar.file=${dist.dir}/${software.name}-${software.version}.jar
+final.jar.file=${final.dir}/${software.name}-bundled-${software.version}.jar
+lib.dir=lib
+libtest.dir=libtest
+final.dir=final
+bin.dir=bin
+

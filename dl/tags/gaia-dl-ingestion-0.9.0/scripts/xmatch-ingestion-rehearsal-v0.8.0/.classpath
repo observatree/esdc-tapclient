@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/cds.binary-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/cds.savot.common-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/cds.savot.model-2.6.tappatched.jar"/>
+	<classpathentry kind="lib" path="lib/cds.savot.pull-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/cds.savot.writer-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/checkstyle-4.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-configuration-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/cos-26Dec2008.jar"/>
+	<classpathentry kind="lib" path="lib/esavo-adql-0.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/esavo-tap-1.0.11.jar"/>
+	<classpathentry kind="lib" path="lib/esavo-uws-1.0.9.jar"/>
+	<classpathentry kind="lib" path="lib/guava-16.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/guava-16.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.5.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/org-json-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-9.3-1100.jdbc4.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/stil-3.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-jdbc-7.0.39.jar"/>
+	<classpathentry kind="lib" path="lib/uploadUtils-1.0.jar"/>
+	<classpathentry kind="lib" path="libtest/jboss-remoting-2.5.3.SP1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/gaia-dl-ingestion-filters"/>
+	<classpathentry kind="lib" path="libtest/GaiaParameters-14.0.0.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaParametersMultiDim-14.0.0.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaParametersReader-14.0.0.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaTools-17.0.0.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaToolsDm-17.0.0.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaIngestionFilters.jar"/>
+	<classpathentry kind="lib" path="libtest/GaiaMdbDm-SB-19.0-TR-r101557.jar"/>
+	<classpathentry kind="lib" path="libtest/CU9Dm-SB-18.1.1-RC-r0.jar"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

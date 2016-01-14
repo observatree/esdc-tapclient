@@ -1,0 +1,19 @@
+# build.properties.int
+#
+# gaia-dl-ingestion INT
+#
+
+### int target flags & options
+server.host=gacsdb01.n1data.lan
+server.user=postgres
+server.instdir=/home/postgres/ingestion
+
+db.server=gacsdb01.n1data.lan
+db.port=8300
+db.name=gacs
+db.owner=ingestion
+# To set in local build.properties
+#db.pwd=
+
+
+
