@@ -1,9 +1,0 @@
-
-esac.archive.gacs.cl.tapclient
-esac.archive.gacs.cl.tapclient.connection
-esac.archive.gacs.cl.tapclient.exception
-esac.archive.gacs.cl.tapclient.interfaces
-esac.archive.gacs.cl.tapclient.parser
-esac.archive.gacs.cl.tapclient.security
-esac.archive.gacs.cl.tapclient.tapSchema
-esac.archive.gacs.cl.web.client.util
