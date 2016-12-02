@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2016 European Space Agency.
+-->
+<VOTABLE version="1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.2" xmlns="http://www.ivoa.net/xml/VOTable/v1.2">
+	<RESOURCE type="results">
+		<INFO name="QUERY_STATUS" value="OK" />
+		<INFO name="PROVIDER" value="ESA">TAP for GACS.</INFO>
+		<INFO name="QUERY"><![CDATA[SELECT * 
+FROM public.g10_mw 
+WHERE 1=CONTAINS(POINT('ICRS',alpha,delta),CIRCLE('ICRS',266.41683,-29.00781, 0.08333333)) 
+AND mag_g>=15 AND mag_g<=18 AND spectral_type='G4IV' 
+ORDER BY mag_g ASC]]></INFO>
+		<TABLE>
+			<FIELD ID="variability_phase" name="variability_phase" datatype="char" arraysize="*" ucd="src.var">
+<DESCRIPTION>aphase</DESCRIPTION>
+</FIELD>
+			<FIELD ID="has_photocenter_motion" name="has_photocenter_motion" datatype="char" arraysize="*" ucd="meta.code">
+<DESCRIPTION>Boolean describing if the photocenter has or not motion</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mag_g_rvs" name="mag_g_rvs" datatype="char" arraysize="*" ucd="phot.mag;em.opt.I" unit="mag">
+<DESCRIPTION>Apparent magnitude at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="av" name="av" datatype="char" arraysize="*" ucd="phot.mag" unit="mag">
+<DESCRIPTION>Interstellar absorption in the V-band</DESCRIPTION>
+</FIELD>
+			<FIELD ID="ag" name="ag" datatype="char" arraysize="*" unit="mag">
+<DESCRIPTION>Interstellar absortion in the G band</DESCRIPTION>
+</FIELD>
+			<FIELD ID="rv" name="rv" datatype="char" arraysize="*" unit="mag">
+<DESCRIPTION>Extinction parameter</DESCRIPTION>
+</FIELD>
+			<FIELD ID="distance" name="distance" datatype="char" arraysize="*" ucd="pos.distance;pos.heliocentric" unit="pc">
+<DESCRIPTION>Distance from the baricenter of the Solar System to the baricenter of the source at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mu_delta" name="mu_delta" datatype="char" arraysize="*" ucd="pos.pm;pos.eq.dec" unit="mas/year">
+<DESCRIPTION>Proper motion along declination at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="radial_velocity" name="radial_velocity" datatype="char" arraysize="*" ucd="spect.dopplerVeloc;pos.heliocentric" unit="km/s">
+<DESCRIPTION>Radial Velocity at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="variability_type" name="variability_type" datatype="char" arraysize="*" ucd="meta.note">
+<DESCRIPTION>deltascuti ACV cepheid RRab ...</DESCRIPTION>
+</FIELD>
+			<FIELD ID="source_id" name="source_id" datatype="char" arraysize="*" ucd="meta.record">
+<DESCRIPTION>Long identifier</DESCRIPTION>
+</FIELD>
+			<FIELD ID="teff" name="teff" datatype="char" arraysize="*" ucd="phys.temperature.effective" unit="K">
+<DESCRIPTION>Effective temperature</DESCRIPTION>
+</FIELD>
+			<FIELD ID="phase" name="phase" datatype="char" arraysize="*" ucd="time.phase">
+<DESCRIPTION>Exoplanets only</DESCRIPTION>
+</FIELD>
+			<FIELD ID="flag_interacting" name="flag_interacting" datatype="int" arraysize="1" ucd="meta.code.multip">
+<VALUES null="-2147483648" />
+<DESCRIPTION>Only for star system</DESCRIPTION>
+</FIELD>
+			<FIELD ID="population" name="population" datatype="int" arraysize="1" ucd="meta.code;obs">
+<VALUES null="-2147483648" />
+<DESCRIPTION>Population</DESCRIPTION>
+</FIELD>
+			<FIELD ID="age" name="age" datatype="char" arraysize="*" ucd="time.age" unit="Gyear">
+<DESCRIPTION>Age</DESCRIPTION>
+</FIELD>
+			<FIELD ID="spectral_type" name="spectral_type" datatype="char" arraysize="*">
+<DESCRIPTION>For stars only: 1=O,2=B,3=A,4=F,5=G,6=K,7=M,8=AGB,0=WD (e.g. 5.7 = G7), to be extended to brown dwarfs</DESCRIPTION>
+</FIELD>
+			<FIELD ID="source_extended_id" name="source_extended_id" datatype="char" arraysize="*">
+<DESCRIPTION>Extended source identifier</DESCRIPTION>
+</FIELD>
+			<FIELD ID="nc" name="nc" datatype="int" arraysize="1" ucd="meta.number">
+<VALUES null="-2147483648" />
+<DESCRIPTION>Number of components</DESCRIPTION>
+</FIELD>
+			<FIELD ID="alpha_fe" name="alpha_fe" datatype="char" arraysize="*" ucd="phys.abund.Z" unit="dex">
+<DESCRIPTION>Alpha elements</DESCRIPTION>
+</FIELD>
+			<FIELD ID="nt" name="nt" datatype="int" arraysize="1" ucd="meta.code">
+<VALUES null="-2147483648" />
+<DESCRIPTION>Total number of object</DESCRIPTION>
+</FIELD>
+			<FIELD ID="host" name="host" datatype="int" arraysize="1" ucd="meta.code">
+<VALUES null="-2147483648" />
+<DESCRIPTION>1=Milky way</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mean_absolute_v" name="mean_absolute_v" datatype="char" arraysize="*" ucd="phot.mag" unit="mag">
+<DESCRIPTION>Mean absolute V magnitude</DESCRIPTION>
+</FIELD>
+			<FIELD ID="orbit_period" name="orbit_period" datatype="char" arraysize="*" ucd="time.period" unit="day">
+<DESCRIPTION>Period of the orbit</DESCRIPTION>
+</FIELD>
+			<FIELD ID="periastron_date" name="periastron_date" datatype="char" arraysize="*" ucd="src.orbital.periastron" unit="day">
+<DESCRIPTION>0:P at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="semimajor_axis" name="semimajor_axis" datatype="char" arraysize="*" ucd="phys.angSize;src" unit="AU">
+<DESCRIPTION>Para hiper bolic orbits</DESCRIPTION>
+</FIELD>
+			<FIELD ID="eccentricity" name="eccentricity" datatype="char" arraysize="*" ucd="src.orbital.eccentricity">
+<DESCRIPTION>Eccentricity</DESCRIPTION>
+</FIELD>
+			<FIELD ID="periastron_argument" name="periastron_argument" datatype="char" arraysize="*" ucd="src.orbital.periastron" unit="deg">
+<DESCRIPTION>Periastron argument</DESCRIPTION>
+</FIELD>
+			<FIELD ID="inclination" name="inclination" datatype="char" arraysize="*" ucd="src.orbital.inclination" unit="deg">
+<DESCRIPTION>Inclination</DESCRIPTION>
+</FIELD>
+			<FIELD ID="longitude_ascending_node" name="longitude_ascending_node" datatype="char" arraysize="*" ucd="src.orbital.node" unit="deg">
+<DESCRIPTION>Longitude of ascending node</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mu_alpha" name="mu_alpha" datatype="char" arraysize="*" ucd="pos.pm;pos.eq.ra" unit="mas/year">
+<DESCRIPTION>Proper  motion along right ascention at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mag_g" name="mag_g" datatype="char" arraysize="*" ucd="phot.mag;em.opt" unit="mag">
+<DESCRIPTION>Apparent magnitude at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="fe_h" name="fe_h" datatype="char" arraysize="*" ucd="phys.abund.Z" unit="dex">
+<DESCRIPTION>Metallicity</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mbol" name="mbol" datatype="char" arraysize="*" ucd="phys.magAbs.bol" unit="mag">
+<DESCRIPTION>Absolute bolometric magnitude at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="color_vminus_i" name="color_vminus_i" datatype="char" arraysize="*" ucd="phot.color;em.opt.V;em.opt.I" unit="mag">
+<DESCRIPTION>Intrinsec V-I color</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mass" name="mass" datatype="char" arraysize="*" ucd="phys.mass" unit="Solar Mass">
+<DESCRIPTION>Mass</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mag_g_bp" name="mag_g_bp" datatype="char" arraysize="*" ucd="phot.mag;em.opt.B" unit="mag">
+<DESCRIPTION>Apparent magnitude at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="mag_g_rp" name="mag_g_rp" datatype="char" arraysize="*" ucd="phot.mag;em.opt.R" unit="mag">
+<DESCRIPTION>Apparent magnitude at J2010 reference epoch</DESCRIPTION>
+</FIELD>
+			<FIELD ID="radius" name="radius" datatype="char" arraysize="*" ucd="pos.angDistance" unit="Solar Radius">
+<DESCRIPTION>Radius</DESCRIPTION>
+</FIELD>
+			<FIELD ID="logg" name="logg" datatype="char" arraysize="*" ucd="phys.gravity" unit="dex">
+<DESCRIPTION>Gravity</DESCRIPTION>
+</FIELD>
+			<FIELD ID="vsini" name="vsini" datatype="char" arraysize="*" unit="km/s">
+<DESCRIPTION>v sin i</DESCRIPTION>
+</FIELD>
+			<FIELD ID="r_env_r_star" name="r_env_r_star" datatype="char" arraysize="*" ucd="meta.note">
+<DESCRIPTION>Envelop characterisic for Be stars</DESCRIPTION>
+</FIELD>
+			<FIELD ID="bond_albedo" name="bond_albedo" datatype="char" arraysize="*" ucd="phys.albedo">
+<DESCRIPTION>Exoplanets only</DESCRIPTION>
+</FIELD>
+			<FIELD ID="geom_albedo" name="geom_albedo" datatype="char" arraysize="*" ucd="phys.albedo">
+<DESCRIPTION>Exoplanets only</DESCRIPTION>
+</FIELD>
+			<FIELD ID="variability_amplitude" name="variability_amplitude" datatype="char" arraysize="*" ucd="src.var.amplitude" unit="mag">
+<DESCRIPTION>The amplitude</DESCRIPTION>
+</FIELD>
+			<FIELD ID="variability_period" name="variability_period" datatype="char" arraysize="*" ucd="src.var" unit="day">
+<DESCRIPTION>The period</DESCRIPTION>
+</FIELD>
+			<FIELD ID="alpha" name="alpha" datatype="double"  ucd="pos.eq.ra;meta.main" utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1" unit="deg">
+<DESCRIPTION>Right ascention of the baricenter at J2010 reference epoch in the ICRS frame</DESCRIPTION>
+</FIELD>
+			<FIELD ID="delta" name="delta" datatype="double"  ucd="pos.eq.dec;meta.main" utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2" unit="deg">
+<DESCRIPTION>Declination of the baricenter at J2010 reference epoch in the ICRS frame</DESCRIPTION>
+</FIELD>
+			<FIELD ID="g10_mw_oid" name="g10_mw_oid" datatype="double" arraysize="1">
+<DESCRIPTION>TTable primary identifier</DESCRIPTION>
+</FIELD>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>0.0</TD>
+						<TD>true</TD>
+						<TD>13.868404092917377</TD>
+						<TD>1.4143510795648813</TD>
+						<TD>1.1730656189718864</TD>
+						<TD>3.1</TD>
+						<TD>1457.5347733152273</TD>
+						<TD>-6.499604977689142</TD>
+						<TD>7.856573745813938</TD>
+						<TD>N</TD>
+						<TD>1981583947846385678</TD>
+						<TD>5248.074602497729</TD>
+						<TD>0.0</TD>
+						<TD>0</TD>
+						<TD>1</TD>
+						<TD>4.0</TD>
+						<TD>G4IV</TD>
+						<TD>*192938010-000014A     </TD>
+						<TD>1</TD>
+						<TD>0.0354402913836927</TD>
+						<TD>1</TD>
+						<TD>1</TD>
+						<TD>3.3</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>-0.9474825317473589</TD>
+						<TD>15.092573479230465</TD>
+						<TD>0.1328531467193097</TD>
+						<TD>2.5224</TD>
+						<TD>0.84</TD>
+						<TD>1.28</TD>
+						<TD>15.783883108726283</TD>
+						<TD>14.246556796563805</TD>
+						<TD>3.3789583858172634</TD>
+						<TD>3.75</TD>
+						<TD>16.234336092831594</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>266.38017435578325</TD>
+						<TD>-29.03239790425155</TD>
+						<TD>441378816</TD>
+					</TR>
+					<TR>
+						<TD>0.0</TD>
+						<TD>true</TD>
+						<TD>14.450638768109396</TD>
+						<TD>1.5510418168833462</TD>
+						<TD>1.2821060654202512</TD>
+						<TD>3.1</TD>
+						<TD>1929.2213665783972</TD>
+						<TD>-1.7869549224971737</TD>
+						<TD>40.68742948827269</TD>
+						<TD>N</TD>
+						<TD>1981583990796058647</TD>
+						<TD>5248.074602497729</TD>
+						<TD>0.0</TD>
+						<TD>0</TD>
+						<TD>1</TD>
+						<TD>4.0</TD>
+						<TD>G4IV</TD>
+						<TD>*192938020-000023A     </TD>
+						<TD>1</TD>
+						<TD>-0.018390237904502706</TD>
+						<TD>1</TD>
+						<TD>1</TD>
+						<TD>3.2</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>1.4410773130960493</TD>
+						<TD>15.710429534281362</TD>
+						<TD>0.15263052492910026</TD>
+						<TD>2.4224000000000006</TD>
+						<TD>0.84</TD>
+						<TD>1.34</TD>
+						<TD>16.434024225814323</TD>
+						<TD>14.840216736932383</TD>
+						<TD>3.5382037884652418</TD>
+						<TD>3.73</TD>
+						<TD>8.797671633624981</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>266.49181932857056</TD>
+						<TD>-28.984258842174444</TD>
+						<TD>441379362</TD>
+					</TR>
+					<TR>
+						<TD>0.0</TD>
+						<TD>true</TD>
+						<TD>15.685000841248453</TD>
+						<TD>2.193619500240512</TD>
+						<TD>1.785044474582243</TD>
+						<TD>3.1</TD>
+						<TD>2104.0897549049787</TD>
+						<TD>-1.163157007878497</TD>
+						<TD>-49.491010406073684</TD>
+						<TD>N</TD>
+						<TD>1981584085285339163</TD>
+						<TD>5248.074602497729</TD>
+						<TD>0.0</TD>
+						<TD>0</TD>
+						<TD>1</TD>
+						<TD>8.5</TD>
+						<TD>G4IV</TD>
+						<TD>*192938042-000027A     </TD>
+						<TD>1</TD>
+						<TD>0.035157384276627464</TD>
+						<TD>1</TD>
+						<TD>1</TD>
+						<TD>3.9</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>-2.570127332450083</TD>
+						<TD>17.101778932419585</TD>
+						<TD>-0.11790716442251936</TD>
+						<TD>3.1224000000000003</TD>
+						<TD>0.84</TD>
+						<TD>1.06</TD>
+						<TD>17.981514166313417</TD>
+						<TD>16.125694721876304</TD>
+						<TD>2.563202058437785</TD>
+						<TD>3.89</TD>
+						<TD>11.796333617193074</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>0.0</TD>
+						<TD>266.4119149039943</TD>
+						<TD>-29.001586303423743</TD>
+						<TD>441386349</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>
