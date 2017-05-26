@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="jar" name="Create Runnable Jar for Project GacsConnection">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard -->
-    <!--ANT 1.7 is required                                         -->
-    <target name="jar">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required   -->
+	<target name="clean" description="Clean up the environment">
+			<delete dir="lib" />
+	</target>
+	
+    <target name="build" depends="clean" description="Compile the java sources">
+		<mkdir dir="lib" />
+
+		<javac srcdir="src" destdir="lib" source="1.8" 
+			target="1.8" compiler="javac1.8" 
+			nowarn="false" debug="true" deprecation="true" />
+	</target>
+	                                     
+    <target name="jar" depends="build">
         <jar destfile="GacsConnection-0.2.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="esac.archive.gacs.cl.tapclient.GacsConnection"/>
