@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project default="jar" name="Create Runnable Jar for Project GacsConnection">
-    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
-    <!--ANT 1.7 is required                                        -->
+    <!--this file was created by Eclipse Runnable JAR Export Wizard -->
+    <!--ANT 1.7 is required                                         -->
     <target name="jar">
         <jar destfile="GacsConnection-0.2.jar" filesetmanifest="mergewithoutmain">
             <manifest>
