@@ -1,0 +1,211 @@
+[
+    {
+    "name": "public",
+    "Tables": [
+        {
+            "name": "public.g10_fuzzy_1000",
+            "Graphs": [
+                {
+                    "type": "DENSITY",
+                    "url": "StatGraph?TABLE=public.g10_fuzzy_1000&TYPE=DENSITY",
+                    "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+                },
+                {
+		    "type": "HIST1D",
+	    	    "url": "StatGraph?TABLE=public.g10_fuzzy_1000&TYPE=HIST1D",
+		    "desc": "Magnitude histogram (based on mag_g column)"
+		}
+            ]
+        },
+        {
+	    "name": "public.g10_fuzzy_100000",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_100000&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_100000&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+
+	    ]
+        },
+        {
+	    "name": "public.g10_fuzzy_1000000",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_1000000&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_1000000&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_fuzzy_10000000",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_10000000&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_fuzzy_10000000&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_gal",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_gal&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_gal&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+
+	    ]
+        },
+        {
+	    "name": "public.g10_lmc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_lmc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_lmc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_mw",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_mw&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_mw&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_quasars",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_quasars&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_quasars&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_smc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_smc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_smc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_sn",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_sn&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.igsl_source",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.igsl_source&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.igsl_source&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.twomass_psc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.twomass_psc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.twomass_psc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on j_m column)"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.tycho2",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.tycho2&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.tycho2&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on vt_mag column)"
+		    }
+
+	    ]
+        }
+    ]
+    }
+]

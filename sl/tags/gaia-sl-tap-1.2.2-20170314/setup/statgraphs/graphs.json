@@ -1,0 +1,288 @@
+[
+    {
+    "name": "public",
+    "Tables": [
+        {
+	    "name": "public.g10_gal",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_gal&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_gal&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+                    {
+		        "id": "G10_GAL",
+		        "name": "G10 Gal",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_gal_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+
+	    ]
+        },
+        {
+	    "name": "public.g10_lmc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_lmc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_lmc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+            {
+		        "id": "G10_LMC",
+		        "name": "G10 LMC",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_lmc_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_mw",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_mw&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_mw&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+            {
+		        "id": "G10_MW",
+		        "name": "G10 MW",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_mw_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_quasars",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_quasars&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_quasars&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+            {
+		        "id": "G10_QUASARS",
+		        "name": "G10 Quasars",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_quasars_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_smc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_smc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.g10_smc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+            {
+		        "id": "G10_SMC",
+		        "name": "G10 Smc",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_smc_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.g10_sn",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.g10_sn&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+            {
+		        "id": "G10_SN",
+		        "name": "G10 SN",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/g10_sn_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.gog_cataloguesource",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	    "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=alpha",
+		        "desc": "RA histogram (based on alpha column)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=alpha_error",
+		        "desc": "RA error histogram (based on alpha_error column)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=delta",
+		        "desc": "Dec. histogram (based on delta column)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=delta_error",
+		        "desc": "Dec. error histogram (based on delta_error column)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=mu_alpha_star",
+		        "desc": "mu_alpha_star histogram"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=mu_alpha_star_error",
+		        "desc": "mu_alpha_star_error histogram"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=mu_delta",
+		        "desc": "mu_delta histogram"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=varpi",
+		        "desc": "varpi histogram"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=varpi_error",
+		        "desc": "varpi_error histogram"
+		    },
+		    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=g_mean_mean_mag",
+		        "desc": "Magnitude histogram (based on g_mean_mean_mag column)"
+		    },
+            {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=radial_velocity",
+		        "desc": "radial_velocity histogram"
+		    },
+		    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.gog_cataloguesource&TYPE=HIST1D&COLUMN=radial_velocity_error",
+		        "desc": "radial_velocity_error histogram"
+		    },
+            {
+		        "id": "GOG_CATALOGUESOURCE",
+		        "name": "GOG Catalogue Source",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/gog_cataloguesource_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.igsl_source",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.igsl_source&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.igsl_source&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on mag_g column)"
+		    },
+            {
+		        "id": "IGSL_SOURCE",
+		        "name": "IGSL Source",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/igsl_source_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.twomass_psc",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.twomass_psc&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.twomass_psc&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on j_m column)"
+		    },
+            {
+		        "id": "TWOMASS_PSC",
+		        "name": "TWOMASS PSC",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/twomass_psc_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        },
+        {
+	    "name": "public.tycho2",
+	    "Graphs": [
+		    {
+		        "type": "DENSITY",
+	    	        "url": "StatGraph?TABLE=public.tycho2&TYPE=DENSITY",
+		        "desc": "Density map. Healpix based (nside 512, 3.14Mpixels)"
+		    },
+                    {
+		        "type": "HIST1D",
+	    	        "url": "StatGraph?TABLE=public.tycho2&TYPE=HIST1D",
+		        "desc": "Magnitude histogram (based on vt_mag column)"
+		    },
+            {
+		        "id": "TYCHO2",
+		        "name": "Tycho2",
+		        "type": "HIPS",
+	    	    "url": "https://geadev.esac.esa.int/tycho2_HiPS/",
+		        "desc": "Sky view"
+		    }
+
+	    ]
+        }
+    ]
+    }
+]

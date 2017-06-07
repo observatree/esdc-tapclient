@@ -1,0 +1,19 @@
+XTENSION= 'BINTABLE'           /binary table extension
+BITPIX  =                    8 /8-bit bytes
+NAXIS   =                    2 /2-dimensional binary table
+NAXIS1  =                    8 /width of table in bytes
+NAXIS2  =              3145728 /number of rows in table
+PCOUNT  =                    0 /size of special data area
+GCOUNT  =                    1 /one data group (required keyword)
+TFIELDS =                    1 /number of fields in each row
+TTYPE1  = 'DENSITY'            /label for field   1
+TFORM1  = 'E       '           /data format of field: 4-byte REAL
+TUNIT1  = 'Counts'             /physical unit of field
+PIXTYPE = 'HEALPIX '           /Pixel algorithm
+ORDERING= 'NESTED  '           /Ordering scheme
+RESOLUTN=                    9 /Resolution index
+NSIDE   =                  512 /Resolution parameter
+FIRSTPIX=                    0 /First pixel (0 based)
+LASTPIX =              3145727 /Last pixel (0 based)
+NPIX    =              3145728 /
+END

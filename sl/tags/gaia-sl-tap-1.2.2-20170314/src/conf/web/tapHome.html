@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>GACS TAP</title>
+	</head>
+	<body>
+		<h1>GACS TAP</h1>
+		<b>ADQL Query:</b>
+		<form action="/tap-cds-asov/tap/async" method="POST">
+			<input type="hidden" name="request" value="doQuery" />
+			<input type="hidden" name="format" value="votable" />
+			<input type="hidden" name="lang" value="adql" />
+			<input type="hidden" name="phase" value="RUN" />
+			<textarea name="query" rows="15" cols="80"></textarea>
+			<br /><input type="submit" value="Run !" style="font-size:1.1em; font-weight: bold; color: green"></input>
+		</form>
+	</body>
+</html>
